@@ -48,6 +48,7 @@
   },
   "scripts": {
     "serve": "node scripts/start.js",
+    "start": "node server/bin/www",
     "build": "./node_modules/.bin/bower install && node scripts/build.js",
     "ui-test": "node scripts/test.js --env=jsdom",
     "test": "./node_modules/.bin/mocha 'server/**/*.spec.js'"
