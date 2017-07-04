@@ -1,0 +1,11 @@
+{
+  "cartoons": [{
+    "id": 1,
+    "name": "Mickey Mouse",
+    "creator": "Walt Disney"
+  }, {
+    "id": 2,
+    "name": "Tom and Jerry",
+    "creator": "Hannah and Barbera"
+  }]
+}
