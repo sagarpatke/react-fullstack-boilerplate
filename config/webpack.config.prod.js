@@ -183,6 +183,7 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
+        exclude: /flexboxgrid/,
         loader: ExtractTextPlugin.extract(
           Object.assign(
             {
@@ -219,6 +220,11 @@ module.exports = {
           )
         ),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        include: /flexboxgrid/
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.

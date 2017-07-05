@@ -181,6 +181,7 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
+        exclude: /flexboxgrid/,
         use: [
           require.resolve('style-loader'),
           {
@@ -207,6 +208,11 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        include: /flexboxgrid/
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
