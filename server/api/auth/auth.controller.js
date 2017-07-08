@@ -6,13 +6,13 @@ function authenticate(req, res, next) {
   const username = req.body.username;
   const password = req.body.password;
 
-  if(!users[username]) { next(new Error()); return; }
-  if(users[username].password !== password) { next(new Error()); return; }
+  if(!users[username]) { res.status(403).json({message: 'Unauthorized'}); return; }
+  if(users[username].password !== password) { res.status(403).json({message: 'Unauthorized'}); return; }
 
   const scopes = users[username].scopes;
 
   generateToken({username, scopes}, (err, token) => {
-    if(err) { next(err); return; }
+    if(err) { res.status(403).json({message: 'Unauthorized'}); return; }
     res.status(201).json({token});
   });
 }

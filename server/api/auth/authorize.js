@@ -3,13 +3,13 @@ const verifyToken = require('./verifyToken');
 function authorize(authorizedScopes) {
   return function(req, res, next) {
     const authorizationHeader = req.get('Authorization');
-    if(!authorizationHeader) { next(new Error()); return; }
+    if(!authorizationHeader) { res.status(403).json({message: 'Unauthorized'}); return; }
 
     const token = authorizationHeader.replace('Bearer ', '');
-    if(!token) { next(new Error()); return; }
+    if(!token) { res.status(403).json({message: 'Unauthorized'}); return; }
 
     verifyToken(token, (err, claims) => {
-      if(err) { next(err); return; }
+      if(err) { res.status(403).json({message: 'Unauthorized'}); return; }
 
       const availableScopes = claims.scopes;
 
@@ -22,7 +22,7 @@ function authorize(authorizedScopes) {
         authorized = availableScopes.indexOf(authorizedScope) >= 0 || authorized;
       });
 
-      if(!authorized) { next(new Error()); return; }
+      if(!authorized) { res.status(403).json({message: 'Unauthorized'}); return; }
 
       req.claims = claims;
       next();
